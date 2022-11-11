@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // CCOMPONENTS
 import { LoginComponent } from './components/login/login.component';
-import { MaterialModule } from './components/material/material.module';
+import { SharedModule } from './components/shared/shared.module';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import { MaterialModule } from './components/material/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
