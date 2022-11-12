@@ -6,62 +6,69 @@
 
     <mat-form-field appearance="standard">
         <mat-label>Filtro</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Criterio de búsqueda" #input>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Criterio de búsqueda" #input autocomplete="off">
     </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
+        <table mat-table [dataSource]="dataSource" matSort >
 
-        <!-- usuario Column -->
-        <ng-container matColumnDef="usuario">
-            <th mat-header-cell *matHeaderCellDef> Usuario </th>
-            <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
-        </ng-container>
+            <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- nombre Column -->
-        <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre }}</td>
-        </ng-container>
+            <!-- usuario Column -->
+            <ng-container matColumnDef="usuario">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+                <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+            </ng-container>
 
-        <!-- apellido Column -->
-        <ng-container matColumnDef="apellido">
-            <th mat-header-cell *matHeaderCellDef> Apellido </th>
-            <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
-        </ng-container>
+            <!-- nombre Column -->
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre }}</td>
+            </ng-container>
 
-        <!-- sexo Column -->
-        <ng-container matColumnDef="sexo">
-            <th mat-header-cell *matHeaderCellDef> Sexo </th>
-            <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
-        </ng-container>
+            <!-- apellido Column -->
+            <ng-container matColumnDef="apellido">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+                <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+            </ng-container>
 
-        <!-- Actions Column -->
-        <ng-container matColumnDef="acciones">
-            <th mat-header-cell *matHeaderCellDef class="th-actions"> </th>
-            <td mat-cell *matCellDef="let element" class="column-actions">
-                <a class="pointer action-search" matTooltip="Ver usuario">
-                    <mat-icon>
-                        search
-                    </mat-icon>
-                </a>
-                <a class="pointer action-edit" matTooltip="Editar usuario">
-                    <mat-icon>
-                        edit
-                    </mat-icon>
-                </a>
-                <a class="pointer action-delete" matTooltip="Eliminar usuario">
-                    <mat-icon>
-                        delete
-                    </mat-icon>
-                </a>
+            <!-- sexo Column -->
+            <ng-container matColumnDef="sexo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sexo </th>
+                <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+            </ng-container>
 
-            </td>
-        </ng-container>
+            <!-- Actions Column -->
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef class="th-actions"> </th>
+                <td mat-cell *matCellDef="let element" class="column-actions">
+                    <a class="pointer action-search" matTooltip="Ver usuario">
+                        <mat-icon>
+                            search
+                        </mat-icon>
+                    </a>
+                    <a class="pointer action-edit" matTooltip="Editar usuario">
+                        <mat-icon>
+                            edit
+                        </mat-icon>
+                    </a>
+                    <a class="pointer action-delete" matTooltip="Eliminar usuario">
+                        <mat-icon>
+                            delete
+                        </mat-icon>
+                    </a>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+
+    </div>
+
 </div>
