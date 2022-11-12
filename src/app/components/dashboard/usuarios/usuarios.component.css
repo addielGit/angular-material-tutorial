@@ -1,0 +1,42 @@
+table {
+    width: 100%;
+}
+
+th {
+    width: 20%;
+}
+
+.th-actions {
+    width: 20%;
+}
+
+.container {
+    padding: 1rem;
+}
+
+.column-actions {
+    text-align: right;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.action-search {
+    color: #673ab7;
+}
+
+.action-edit {
+    color: #673ab7;
+    margin-left: 1rem;
+}
+
+.action-delete {
+    color: red;
+    margin-left: 1rem;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
