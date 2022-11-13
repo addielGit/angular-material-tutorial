@@ -40,3 +40,8 @@ th {
     font-size: 14px;
     width: 100%;
 }
+
+.toolbar-container {
+    margin: 1rem 0 0 1rem;
+    width: 98%;
+}

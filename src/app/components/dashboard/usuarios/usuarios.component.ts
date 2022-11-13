@@ -1,9 +1,11 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuario } from 'src/app/interfaces/usuario';
-
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -12,25 +14,34 @@ import { Usuario } from 'src/app/interfaces/usuario';
 })
 export class UsuariosComponent implements OnInit {
 
-  listUsuarios: Usuario[] = [
-    { usuario: 'avelazco', nombre: 'Addiel', apellido: 'Velazco', sexo: 'M' },
-    { usuario: 'maiyarag', nombre: 'Maiyara', apellido: 'Guerra', sexo: 'F' },
-    { usuario: 'randyg', nombre: 'Randy', apellido: 'Guerra', sexo: 'M' },
-    { usuario: 'tomasda', nombre: 'Tomas', apellido: 'De Armas', sexo: 'M' },
-    { usuario: 'taniap', nombre: 'Tania', apellido: 'Padilla', sexo: 'F' },
-    { usuario: 'sandrada', nombre: 'Sandra', apellido: 'De Armas', sexo: 'F' },
-    { usuario: 'fernandov', nombre: 'Fernando', apellido: 'Velazco', sexo: 'F' },
-  ];
+  listUsuarios: Usuario[] = [];
 
   displayedColumns: string[] = ['usuario', 'nombre', 'apellido', 'sexo', 'acciones'];
-  dataSource = new MatTableDataSource(this.listUsuarios);
+  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() { }
+  constructor(private usuariosSvc: UsuarioService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios() {
+    this.listUsuarios = this.usuariosSvc.getUsuario();
+    this.dataSource = new MatTableDataSource(this.listUsuarios);
+  }
+
+  eliminarUsuario(index: number) {
+    this.usuariosSvc.eliminarUsuario(index);
+    this.cargarUsuarios();
+
+    this._snackBar.open('El usuario fue eliminado satisfactoriamente.', '', {
+      duration: 1500,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    })
   }
 
   ngAfterViewInit() {

@@ -1,0 +1,51 @@
+<mat-toolbar class="toolbar-container">
+    <span>Nuevo usuario</span>
+</mat-toolbar>
+
+<mat-card class="card-container">
+    <form [formGroup]="form" (ngSubmit)="agregarUsuario()">
+        <mat-grid-list cols="4" rowHeight="70px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput autocomplete="off" formControlName="usuario">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="3" [rowspan]="5">
+                <img src="../../../assets/img/avatarLogin.png" alt="img" width="250" height="250">
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput autocomplete="off" formControlName="nombre">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput autocomplete="off" formControlName="apellidos">
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select formControlName="sexo">
+                        <mat-option *ngFor="let sex of sexs" [value]="sex">
+                            {{sex}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-container-actions" [colspan]="1" [rowspan]="1">
+                <button mat-raised-button routerLink="/dashboard/usuarios">Cancelar</button>
+                <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">Crear</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    </form>
+</mat-card>
